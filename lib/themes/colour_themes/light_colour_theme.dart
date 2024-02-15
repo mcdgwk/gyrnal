@@ -11,8 +11,9 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: Colors.white,
   ),
   iconTheme: IconThemeData(
-    color: Color(0xFF66C2A4), // Your chosen color for icons.
+    color: Color(0xFF66C2A4),
   ),
+  cardColor: Color(0xFF98EECC),
 );
 
 

@@ -1,17 +1,26 @@
-// pre-made workouts to add to users' collection
-import 'package:flutter/material.dart';
+// reference - https://www.youtube.com/watch?v=6Gz2J52s7AI
+// reference - https://github.com/dragneel2074/search_apilist
 
-// ignore_for_file: prefer_const_constructors
+// search function taken from Youtube video and GitHub repository listed above ^^
+// adjusted to fit application - searches for exercise name
+
+// reference - https://docs.flutter.dev/cookbook/networking/fetch-data
+// video used alongside the official Flutter documentation for fetching data from the internet
+
+// reference - https://www.api-ninjas.com/api/exercises
+// above is website where the exercise API is hosted
 import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
-import '../widgets/drawer_side_menu.dart';
-import '../widgets/app_bar.dart';
 import 'package:gyrnal_workout_app/screens/dashboard.dart';
-import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/screens/profile.dart';
+import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/screens/workouts.dart';
+import 'package:gyrnal_workout_app/services/api.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-// search function reference - https://www.kindacode.com/article/how-to-create-a-filter-search-listview-in-flutter/
+import '../models/exercise_model.dart';
+import '../services/api_search.dart';
+import '../widgets/bottom_navigation_bar.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -21,8 +30,10 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  int _selectedScreenIndex = 5;
 
+// new instance of FetchExerciseList to obtain getExerciseList()
+  FetchExerciseList _exerciseListService = FetchExerciseList();
+  int _selectedScreenIndex = 5;
   final List<Widget> _pageOptions = [
     //Home(),
     DashboardScreen(),
@@ -31,115 +42,69 @@ class _ExploreScreenState extends State<ExploreScreen> {
     ProfileScreen(),
   ];
 
-  // todo change
-  final List<Map<String, dynamic>> _allUsers = [
-    {"id": 1, "name": "Andy", "age": 29},
-    {"id": 2, "name": "Aragon", "age": 40},
-    {"id": 3, "name": "Bob", "age": 5},
-    {"id": 4, "name": "Barbara", "age": 35},
-    {"id": 5, "name": "Candy", "age": 21},
-    {"id": 6, "name": "Colin", "age": 55},
-    {"id": 7, "name": "Audra", "age": 30},
-    {"id": 8, "name": "Banana", "age": 14},
-    {"id": 9, "name": "Caversky", "age": 100},
-    {"id": 10, "name": "Becky", "age": 32},
-  ];
-
-  List<Map<String, dynamic>> _foundUsers = [];
-
-  @override
-  initState() {
-    //  all users are shown for the initial state
-    _foundUsers = _allUsers;
-    super.initState();
-  }
-
   void _selectScreen(int index) {
     setState(() {
       _selectedScreenIndex = index;
     });
-
-
   }
-  void _runFilter(String enteredKeyword) {
-    List<Map<String, dynamic>> results = [];
-    if (enteredKeyword.isEmpty) {
-      // displays all search possibilities if search is empty or only contains whitespace
-      results = _allUsers;
-    } else {
-      results = _allUsers
-          .where((user) =>
-          user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();
-      // toLowerCase() used to allow for the exact string to match no matter if lower/uppercase input
-    }
 
-    // Refresh the UI
-    setState(() {
-      _foundUsers = results;
-    });
-  }
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    return Scaffold(
-      // side menu drawer
-      drawer: DrawerMenu(),
-      // custom appBar
-      appBar:GyrnalAppBar(
-        title: 'Gyrnal',
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            TextField(
-              onChanged: (value) => _runFilter(value),
-              decoration: InputDecoration(
-                  labelText: 'Search',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: BorderSide(),
-                  ),
-                  prefixIcon: Icon(Icons.search)),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: _foundUsers.isNotEmpty
-                  ? ListView.builder(
-                itemCount: _foundUsers.length,
-                itemBuilder: (context, index) => Card(
-                  key: ValueKey(_foundUsers[index]["id"]),
-                  color: Colors.amberAccent,
-                  elevation: 4,
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  child: ListTile(
-                    leading: Text(
-                      _foundUsers[index]["id"].toString(),
-                      style: const TextStyle(fontSize: 24),
-                    ),
-                    title: Text(_foundUsers[index]['name']),
-                    subtitle: Text(
-                        '${_foundUsers[index]["age"].toString()} years old'),
-                  ),
-                ),
-              )
-                  : const Text(
-                'No results found',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
+
+    // get theme data
+    ThemeData theme = Theme.of(context);
+    return SafeArea(
+      child: Scaffold(
+
+
+        appBar: AppBar(
+          title: Text('Exercises',
+          style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: theme.primaryColor)
+          ),
+          backgroundColor: theme.appBarTheme.backgroundColor,
+          actions: [
+            IconButton(
+              onPressed: () {
+                // uses the SearchExercise delegate
+                showSearch(context: context, delegate: SearchExercise());
+              },
+              icon: Icon(Icons.search_sharp, color: theme.iconTheme.color),            )
           ],
         ),
+        body: Container(
+          padding: EdgeInsets.all(20),
+          child: FutureBuilder<List<ExerciseModel>>(
+              future: _exerciseListService.getExerciseList(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                List<ExerciseModel>? data = snapshot.data;
+                return ListView.builder(
+                    itemCount: data?.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: theme.cardColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            title: Text(data?[index].name ?? ''),
+                            subtitle: Text(data?[index].muscle ?? ''),
+                            // todo - add more properties
+                          ),
+                        ),
+                      );
+                    });
+
+              }),
+        ),
+        bottomNavigationBar: BottomNavBar(
+          selectedIndex: _selectedScreenIndex,
+          onSelectPage: _selectScreen,
+        ),
       ),
-    bottomNavigationBar: BottomNavBar(
-    selectedIndex: _selectedScreenIndex,
-    onSelectPage: _selectScreen,),
     );
   }
 }
