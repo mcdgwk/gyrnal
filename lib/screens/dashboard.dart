@@ -27,31 +27,6 @@ class DashboardScreen extends StatelessWidget {
       'lib/images/test4.jpg',
     ];
 
-    // final List<String> test = [
-    //   'lib/images/test1.jpg',
-    //   'lib/images/test2.jpg',
-    //   'lib/images/test3.jpg',
-    //   'lib/images/test4.jpg',
-    // ];
-
-    //
-    // final WorkoutPlan pullWorkoutPlan = WorkoutPlan(
-    //     planName: 'Pull',
-    //     imageUrls:[
-    //     'lib/images/exercise/bicep-curl-dumbbell.png',
-    //     'lib/images/test2.jpg',
-    //     'lib/images/test3.jpg',
-    //     'lib/images/test4.jpg',
-    //     ],);
-
-    // final List<String> pullWorkoutPlan = [
-    //   'images/exercises/barbell-curl-bicep.png',
-    //   'images/exercises/bicep-curl-dumbbell.png',
-    //   'images/exercises/chest-supported-dumbbell-row.jpg',
-    //   'images/exercises/Dumbbell-Shrug.jpeg',
-    //   'images/exercises/Standing-Cable-Rear-Delt-Fly.jpeg',
-    // ];
-
     final List<WorkoutPlan> preMadeWorkouts = [
       WorkoutPlan(
         planName: 'Pull Workout Plan',
@@ -62,11 +37,16 @@ class DashboardScreen extends StatelessWidget {
           // 'images/exercises/Dumbbell-Shrug.jpeg',
           // 'images/exercises/Standing-Cable-RearS-Delt-Fly.jpeg',
           // 'assets/barbell-curl-2.jpg',
-          'assets/bicep-barbell-curl.png',
-          'assets/test1.jpg',
-          'assets/test2.jpg',
-          'assets/test3.jpg',
+          // 'assets/test3.jpg',
           // 'assets/test4.jpg',
+          // above is for testing purposes
+
+          'assets/bicep-barbell-curl.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
+          'assets/bicep-curl-dumbbell.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
+          'assets/chest-supported-dumbbell-row.jpg', // ref - https://strengthlevel.com/strength-standards/chest-supported-dumbbell-row/lb
+          'assets/Dumbbell-Shrug.jpeg', // ref - https://www.relifesports.com/what-do-dumbbell-shrugs-work/
+          'assets/new-standing-cable-rear-delt-fly.png', // ref - https://www.gymenix.com/2022/02/rear-deltoid-flyes.html
+
         ],
         exerciseNames: [
           'Bicep Barbell Curl',
@@ -76,7 +56,7 @@ class DashboardScreen extends StatelessWidget {
           'Standing Cable Rear Delt Fly',
         ],
       ),
-      // todo - add more plans
+      // todo - add more plans - 1 more for the dashboard??
     ];
 
 
@@ -103,7 +83,7 @@ class DashboardScreen extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.all(20),
                 child: Text(
-                  "Some text here",
+                  "Coming soon to Gyrnal!",
                   style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
@@ -123,8 +103,6 @@ class DashboardScreen extends StatelessWidget {
             // test carousel
             // CarouselWithDots(testImagesList: testImagesList),
             CarouselWithDots(workoutPlan: preMadeWorkouts[0]),
-
-
             SizedBox(
               height: 30,
             ),

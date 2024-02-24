@@ -15,6 +15,8 @@ import 'package:gyrnal_workout_app/themes/colour_themes/light_colour_theme.dart'
 
 
 void main() => runApp(MaterialApp(
+  // removes debug banner
+  debugShowCheckedModeBanner: false,
   title: 'Gyrnal',
   theme: lightTheme,
   initialRoute: '/home',

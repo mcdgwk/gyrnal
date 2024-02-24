@@ -12,6 +12,6 @@ final List<Workout> preMadeWorkouts= [
         'images/exercises/bicep-curl-dumbbell.png',
         'images/exercises/chest-supported-dumbbell-row.jpg',
         'images/exercises/Dumbbell-Shrug.jpeg',
-        'images/exercises/Standing-Cable-Rear-Delt-Fly.jpeg',
+        'images/exercises/standing-cable-rear-delt-fly.jpeg',
       ])
 ];

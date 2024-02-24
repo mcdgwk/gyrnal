@@ -55,8 +55,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
     ThemeData theme = Theme.of(context);
     return SafeArea(
       child: Scaffold(
-
-
         appBar: AppBar(
           title: Text('Exercises',
           style: TextStyle(
