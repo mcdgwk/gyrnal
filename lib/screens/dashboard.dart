@@ -1,13 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 // ignore_for_file: prefer_const_constructors
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
 import '../widgets/drawer_side_menu.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/carousel_plans.dart';
-import 'package:gyrnal_workout_app/workouts/pre_made_workouts.dart';
-import 'package:gyrnal_workout_app/workouts/workout_model.dart';
-import 'package:gyrnal_workout_app/workouts/pre_made_workouts.dart';
+
 
 
 
@@ -31,15 +29,6 @@ class DashboardScreen extends StatelessWidget {
       WorkoutPlan(
         planName: 'Pull Workout Plan',
         imageUrls: [
-           // 'assets/barbell-curl-bicep.jpg',
-          // 'images/exercises/bicep-curl-dumbbell.png',
-          // 'images/exercises/chest-supported-dumbbell-row.jpg',
-          // 'images/exercises/Dumbbell-Shrug.jpeg',
-          // 'images/exercises/Standing-Cable-RearS-Delt-Fly.jpeg',
-          // 'assets/barbell-curl-2.jpg',
-          // 'assets/test3.jpg',
-          // 'assets/test4.jpg',
-          // above is for testing purposes
 
           'assets/bicep-barbell-curl.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
           'assets/bicep-curl-dumbbell.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
@@ -71,7 +60,7 @@ class DashboardScreen extends StatelessWidget {
           'Incline Dumbbell Press',
           'Barbell Shoulder Press',
           'Leaning Cable Lateral Raises',
-          'Triceps Pushdown',
+          'Triceps Push-down',
         ],
       ),
 

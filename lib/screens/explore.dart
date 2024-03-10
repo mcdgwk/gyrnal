@@ -7,10 +7,14 @@
 // reference - https://docs.flutter.dev/cookbook/networking/fetch-data
 // video used alongside the official Flutter documentation for fetching data from the internet
 
+// ignore_for_file: prefer_const_constructors
+
 // reference - https://www.api-ninjas.com/api/exercises
 // above is website where the exercise API is hosted
 import 'package:flutter/material.dart';
+import 'package:gyrnal_workout_app/screens/create.dart';
 import 'package:gyrnal_workout_app/screens/dashboard.dart';
+import 'package:gyrnal_workout_app/screens/health.dart';
 import 'package:gyrnal_workout_app/screens/profile.dart';
 import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/screens/workouts.dart';
@@ -34,12 +38,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
 // new instance of FetchExerciseList to obtain getExerciseList()
   FetchExerciseList _exerciseListService = FetchExerciseList();
   int _selectedScreenIndex = 5;
-  final List<Widget> _pageOptions = [
+  final List<Widget> _screenOptions = [
     //Home(),
     DashboardScreen(),
     SettingsScreen(),
     WorkoutScreen(),
+    CreateScreen(),
     ProfileScreen(),
+    HealthScreen(),
   ];
 
   void _selectScreen(int index) {

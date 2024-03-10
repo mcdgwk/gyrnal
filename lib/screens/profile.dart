@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:gyrnal_workout_app/screens/create.dart';
+import 'package:gyrnal_workout_app/screens/health.dart';
 import '../widgets/drawer_side_menu.dart';
 import '../widgets/app_bar.dart';
 import 'package:gyrnal_workout_app/screens/workouts.dart';
@@ -17,14 +19,16 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  int _selectedScreenIndex = 3;
+  int _selectedScreenIndex = 6;
 
   final List<Widget> _pageOptions = [
     //Home(),
     DashboardScreen(),
     SettingsScreen(),
     WorkoutScreen(),
+    CreateScreen(),
     ProfileScreen(),
+    HealthScreen(),
   ];
 
   void _selectScreen(int index) {

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:gyrnal_workout_app/screens/health.dart';
 import 'package:gyrnal_workout_app/screens/home.dart';
 import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/screens/profile.dart';
@@ -60,7 +61,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
             // Settings icon
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            // when settings icon tapped navigate to Settings Screen
+            // when settings icon tapped navigate to the Settings Screen
             onTap: () => {
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SettingsScreen()))
             },
@@ -69,11 +70,11 @@ class _DrawerMenuState extends State<DrawerMenu> {
           // navigates to Workout screen
           ListTile(
             // Workout icon
-            leading: Icon(Icons.fitness_center),
-            title: Text('Workout'),
-            // when dumbbell icon tapped navigate to Workout screen
+            leading: Icon(Icons.favorite),
+            title: Text('Health and Well-being'),
+            // when dumbbell icon tapped navigate to the Health and Well-being screen
             onTap: () => {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WorkoutScreen()))
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HealthScreen()))
             },
           ),
 

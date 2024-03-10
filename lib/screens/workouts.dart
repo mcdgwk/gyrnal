@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:gyrnal_workout_app/screens/create.dart';
+import 'package:gyrnal_workout_app/screens/health.dart';
 import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
 import '../widgets/drawer_side_menu.dart';
 import '../widgets/app_bar.dart';
@@ -25,7 +27,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     DashboardScreen(),
     SettingsScreen(),
     WorkoutScreen(),
+    CreateScreen(),
     ProfileScreen(),
+    HealthScreen(),
   ];
 
   void _selectScreen(int index) {

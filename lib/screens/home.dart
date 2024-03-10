@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:gyrnal_workout_app/screens/create.dart';
 import 'package:gyrnal_workout_app/screens/dashboard.dart';
+import 'package:gyrnal_workout_app/screens/health.dart';
 import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
 import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/screens/workouts.dart';
@@ -24,7 +26,9 @@ class _HomeState extends State<Home> {
     DashboardScreen(),
     SettingsScreen(),
     WorkoutScreen(),
+    CreateScreen(),
     ProfileScreen(),
+    HealthScreen(),
   ];
 
   void _selectScreen(int index) {
