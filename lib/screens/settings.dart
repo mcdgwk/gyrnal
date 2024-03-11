@@ -47,7 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       drawer: DrawerMenu(),
       // custom appBar
       appBar:GyrnalAppBar(
-        title: 'Gyrnal',
+        title: 'Settings',
       ),
       // List of Settings Sections - purely conceptual for now
       body: SettingsList(
@@ -115,6 +115,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 initialValue: isCustomTheme,
 
+                activeSwitchColor: Theme.of(context).primaryColor,
                 // toggles slider on/off - purely conceptual
                 onToggle: (bool value) {
                   setState(() {
@@ -196,6 +197,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   color: Theme.of(context).iconTheme.color,
                 ),
                 initialValue: isLockInBackground,
+                activeSwitchColor: Theme.of(context).primaryColor,
 
                 // toggles slider on/off - purely conceptual
                 onToggle: (bool value) {
@@ -215,6 +217,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Icons.fingerprint,
                   color: Theme.of(context).iconTheme.color,
                 ),
+
+                activeSwitchColor: Theme.of(context).primaryColor,
                 // toggles slider on/off - purely conceptual
                 initialValue: isUsingFingerprint,
                 onToggle: (bool value) {
@@ -248,6 +252,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 initialValue: isNotificationsEnabled,
 
+                activeSwitchColor: Theme.of(context).primaryColor,
                 // toggles slider on/off - purely conceptual
                 onToggle: (bool value) {
                   setState(() {

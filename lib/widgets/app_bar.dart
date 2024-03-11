@@ -43,6 +43,7 @@ class GyrnalAppBar extends StatelessWidget implements PreferredSizeWidget {
             title, // screen title
             style: TextStyle(
                 fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
                 color: theme.primaryColor
             ),
           ),
