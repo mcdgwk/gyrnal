@@ -45,7 +45,7 @@ class _HealthScreenState extends State<HealthScreen> {
       drawer: DrawerMenu(),
       // custom appBar
       appBar:GyrnalAppBar(
-        title: 'Gyrnal',
+        title: 'Health and Well-being',
       ),
       body: Center(
         child: Text(

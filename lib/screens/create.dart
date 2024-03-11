@@ -249,7 +249,7 @@ class _CreateScreenState extends State<CreateScreen> {
       drawer: DrawerMenu(),
       // custom appBar
       appBar:GyrnalAppBar(
-        title: 'Gyrnal',
+        title: 'Create',
       ),
       body: Center(
         child: Text(

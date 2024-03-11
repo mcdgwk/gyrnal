@@ -89,7 +89,7 @@ class DashboardScreen extends StatelessWidget {
       drawer: DrawerMenu(),
       // custom appBar
       appBar:GyrnalAppBar(
-        title: 'Gyrnal',
+        title: 'Home',
       ),
       body: Container(
         child: SingleChildScrollView(

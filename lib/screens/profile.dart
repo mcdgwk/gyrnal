@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       drawer: DrawerMenu(),
       // custom appBar
       appBar:GyrnalAppBar(
-        title: 'Gyrnal',
+        title: 'Profile',
       ),
       body: Center(
         child: Text(

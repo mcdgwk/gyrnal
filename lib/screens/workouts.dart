@@ -46,7 +46,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       drawer: DrawerMenu(),
       // custom appBar
       appBar:GyrnalAppBar(
-        title: 'Gyrnal',
+        title: 'Workout',
       ),
       body: Center(
         child: Text(

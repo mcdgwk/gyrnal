@@ -62,7 +62,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exercises',
+          title: Text('Explore exercises',
           style: TextStyle(
               fontFamily: 'Montserrat',
               color: theme.primaryColor)
