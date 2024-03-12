@@ -21,21 +21,14 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   int _selectedScreenIndex = 6;
 
-  final List<Widget> _pageOptions = [
-    //Home(),
-    DashboardScreen(),
-    SettingsScreen(),
-    WorkoutScreen(),
-    CreateScreen(),
-    ProfileScreen(),
-    HealthScreen(),
-  ];
 
   void _selectScreen(int index) {
     setState(() {
       _selectedScreenIndex = index;
     });
   }
+
+  // design reference - https://medium.com/@palmeiro.leonardo/simple-profile-screen-with-flutter-fe2f1f7cfaf5
 
   @override
   Widget build(BuildContext context) {
