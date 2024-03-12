@@ -42,6 +42,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
+
+    // reference - https://pub.dev/documentation/settings_ui/latest/
     return Scaffold(
       // custom side navigation drawer
       drawer: DrawerMenu(),
@@ -259,6 +261,82 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     isNotificationsEnabled = value;
                   });
                 },
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(
+              'Privacy and Security',
+              style: TextStyle(color: Theme.of(context).primaryColor,
+              ),
+            ),
+            tiles: [
+              // Language tile
+              SettingsTile(
+                title: Text(
+                  'Clear browsing data',
+                  style: TextStyle(color: theme.secondaryHeaderColor),
+                ),
+                description: Text('Clear history, cookies, cache and more'),
+                leading: Icon(
+                  Icons.delete,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+                onPressed: (BuildContext context) {},
+              ),
+
+              // Environment tile
+              SettingsTile(
+                title: Text(
+                  'Cookies and other site data',
+                  style: TextStyle(color: theme.secondaryHeaderColor),
+                ),
+                description: Text('Third-party cookies are blocked in incognito mode'),
+                leading: Icon(
+                  Icons.web,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+                onPressed: (BuildContext context) {},
+              ),
+
+              // Platform tile
+              SettingsTile(
+                title: Text(
+                  'Security',
+                  style: TextStyle(color: theme.secondaryHeaderColor),
+                ),
+                description: Text('Safe Browsing (protection from dangerous sites)'),
+                leading: Icon(
+                  Icons.security,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+                onPressed: (BuildContext context) {},
+              ),
+
+              SettingsTile(
+                title: Text(
+                  'Site settings',
+                  style: TextStyle(color: theme.secondaryHeaderColor),
+                ),
+                description: Text('Controls what information sites can use and show'),
+                leading: Icon(
+                  Icons.settings,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+                onPressed: (BuildContext context) {},
+              ),
+
+              SettingsTile(
+                title: Text(
+                  'Privacy Sandbox',
+                  style: TextStyle(color: theme.secondaryHeaderColor),
+                ),
+                description: Text('Trial features are on'),
+                leading: Icon(
+                  Icons.assured_workload,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+                onPressed: (BuildContext context) {},
               ),
             ],
           ),
