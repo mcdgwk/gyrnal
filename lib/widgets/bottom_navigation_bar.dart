@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/screens/create.dart';
+// import 'package:gyrnal_workout_app/screens/create.dart';
 import 'package:gyrnal_workout_app/screens/explore.dart';
+import 'package:gyrnal_workout_app/screens/health.dart';
 import 'package:gyrnal_workout_app/screens/workouts.dart';
 import 'package:gyrnal_workout_app/screens/profile.dart';
+import 'package:gyrnal_workout_app/screens/settings.dart';
 
 
 // page indexes
@@ -66,19 +68,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WorkoutScreen()));
             break;
           case 1:
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CreateScreen()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SettingsScreen()));
             break;
           case 2:
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ExploreScreen()));
             break;
           case 3:
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfileScreen())); // Assuming you have a ProfileScreen
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
             break;
           case 4:
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CreateScreen()));
-            break;
-          case 5:
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ExploreScreen()));
+            // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CreateScreen()));
+            // break;
+          // case 5:
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HealthScreen()));
             break;
         //     todo - add more screens
         }
