@@ -12,16 +12,7 @@
 // reference - https://www.api-ninjas.com/api/exercises
 // above is website where the exercise API is hosted
 import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/screens/create.dart';
-import 'package:gyrnal_workout_app/screens/dashboard.dart';
-import 'package:gyrnal_workout_app/screens/health.dart';
-import 'package:gyrnal_workout_app/screens/profile.dart';
-import 'package:gyrnal_workout_app/screens/settings.dart';
-import 'package:gyrnal_workout_app/screens/workouts.dart';
 import 'package:gyrnal_workout_app/services/api.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
 import '../models/exercise_model.dart';
 import '../services/api_search.dart';
 import '../widgets/bottom_navigation_bar.dart';
@@ -37,16 +28,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
 // new instance of FetchExerciseList to obtain getExerciseList()
   FetchExerciseList _exerciseListService = FetchExerciseList();
+
+  // screen navigation index
   int _selectedScreenIndex = 5;
-  final List<Widget> _screenOptions = [
-    //Home(),
-    DashboardScreen(),
-    SettingsScreen(),
-    WorkoutScreen(),
-    CreateScreen(),
-    ProfileScreen(),
-    HealthScreen(),
-  ];
 
   void _selectScreen(int index) {
     setState(() {
@@ -61,11 +45,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
     ThemeData theme = Theme.of(context);
     return SafeArea(
       child: Scaffold(
+        // app bar containing a search icon button
         appBar: AppBar(
           title: Text('Explore exercises',
           style: TextStyle(
               fontFamily: 'Montserrat',
-              color: theme.primaryColor)
+              fontWeight: FontWeight.w600,
+              color: theme.primaryColor
+            ),
           ),
           backgroundColor: theme.appBarTheme.backgroundColor,
           actions: [
@@ -74,34 +61,46 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 // uses the SearchExercise delegate
                 showSearch(context: context, delegate: SearchExercise());
               },
-              icon: Icon(Icons.search_sharp, color: theme.iconTheme.color),            )
+              icon: Icon(Icons.search_sharp, color: theme.iconTheme.color),
+            )
           ],
         ),
         body: Container(
+          //  space around all sides of list
           padding: EdgeInsets.all(20),
           child: FutureBuilder<List<ExerciseModel>>(
+
+              // future method gets the exercise list
               future: _exerciseListService.getExerciseList(),
               builder: (context, snapshot) {
+
+                // displays a loading spinner if no data is available yet
                 if (!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator());
                 }
                 List<ExerciseModel>? data = snapshot.data;
+
+                // creates a list
                 return ListView.builder(
                     itemCount: data?.length,
                     itemBuilder: (context, index) {
+
+                      // wraps each list item in a card
                       return Card(
                         color: theme.cardColor,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
+
+                          // displays exercise information
                           child: ListTile(
+                            // displays the exercise name
                             title: Text(data?[index].name ?? ''),
+                            // displays the targeted muscle group
                             subtitle: Text(data?[index].muscle ?? ''),
-                            // todo - add more properties
                           ),
                         ),
                       );
                     });
-
               }),
         ),
         bottomNavigationBar: BottomNavBar(
