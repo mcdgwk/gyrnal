@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:gyrnal_workout_app/screens/favourite_workouts.dart';
 import 'package:gyrnal_workout_app/screens/health.dart';
 import 'package:gyrnal_workout_app/screens/home.dart';
 import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/screens/profile.dart';
-import 'package:gyrnal_workout_app/screens/workouts.dart';
 
 // Side menu drawer to be reused in multiple screens
 class DrawerMenu extends StatefulWidget {
@@ -39,9 +39,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 bottomRight: Radius.circular(1.0),
               ),
               color: theme.primaryColor,
-              // image: DecorationImage(
-              // fit: BoxFit.fill, image: AssetImage('assets/images/TODO - INSERT IMAGE),
-              // ),
             ),
           ),
 
@@ -70,7 +67,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
           // navigates to Workout screen
           ListTile(
             // Workout icon
-            leading: Icon(Icons.favorite),
+            leading: Icon(Icons.medical_services),
             title: Text('Health and Well-being'),
             // when dumbbell icon tapped navigate to the Health and Well-being screen
             onTap: () => {
@@ -88,12 +85,20 @@ class _DrawerMenuState extends State<DrawerMenu> {
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfileScreen()))
             },
           ),
+
+          ListTile(
+            // Profile icon
+            leading: Icon(Icons.favorite),
+            title: Text('Favourite Exercises'),
+            // when favourite icon tapped navigate to the favourite exercises Screen
+            onTap: () => {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FavoriteExercisesScreen()))
+            },
+          ),
         ],
       ),
     );
   }
 }
-
-// Todo - add more list items if there are more screens
 
 // reference - https://www.youtube.com/watch?v=w81m2dVW0f0
