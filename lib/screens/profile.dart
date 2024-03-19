@@ -1,16 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/screens/create.dart';
-import 'package:gyrnal_workout_app/screens/health.dart';
 import '../widgets/drawer_side_menu.dart';
 import '../widgets/app_bar.dart';
-import 'package:gyrnal_workout_app/screens/workouts.dart';
-import 'package:gyrnal_workout_app/screens/dashboard.dart';
-import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
 
-
+// Profile screen that displays user information
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -29,7 +24,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   // design reference - https://medium.com/@palmeiro.leonardo/simple-profile-screen-with-flutter-fe2f1f7cfaf5
-
   @override
   Widget build(BuildContext context) {
    // get theme data
@@ -48,7 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: 250,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                // todo chsnge
                 colors: [theme.secondaryHeaderColor, theme.primaryColor],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
@@ -111,114 +104,116 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          Container(
-            child: Row(
-              children: <Widget> [
-                Expanded(child: Container(
-                  color: theme.primaryColor,
-                  child: ListTile(
-                    title: Text(
-                      '1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.white,
-                      ),
+
+          // number of plans and workouts row
+          Row(
+            children: <Widget> [
+              Expanded(child: Container(
+                color: theme.primaryColor,
+                child: ListTile(
+                  title: Text(
+                    '1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.white,
                     ),
-                    subtitle: Text(
-                      'Plan',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white70
-                      ),
+                  ),
+                  subtitle: Text(
+                    'Plan',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white70
                     ),
                   ),
                 ),
               ),
-                Expanded(
-                    child: Container(
-                      color: theme.secondaryHeaderColor,
-                      child: ListTile(
-                        title: Text(
-                          '3',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Colors.white,
-                          ),
+            ),
+              Expanded(
+                  child: Container(
+                    color: theme.secondaryHeaderColor,
+                    child: ListTile(
+                      title: Text(
+                        '3',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: Colors.white,
                         ),
-                        subtitle: Text(
-                          'Workouts',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white70,
-                          ),
+                      ),
+                      subtitle: Text(
+                        'Workouts',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white70,
                         ),
                       ),
                     ),
-                ),
-            ],
-           ),
-         ),
-          Container(
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  title: Text(
-                    'Email',
-                    style: TextStyle(
-                      color: theme.secondaryHeaderColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
-                  subtitle: Text(
-                    'john-example-email-@email.com',
-                    style: TextStyle(
-                        fontSize: 18
+              ),
+          ],
+                     ),
+
+          // user profile information
+          Column(
+            children: <Widget>[
+              ListTile(
+                title: Text(
+                  'Email',
+                  style: TextStyle(
+                    color: theme.secondaryHeaderColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                ),
-                Divider(),
-                ListTile(
-                  title: Text(
-                    'Weight',
-                    style: TextStyle(
-                      color: theme.secondaryHeaderColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Text(
-                    '80 kg',
-                    style: TextStyle(
+                subtitle: Text(
+                  'john-example-email-@email.com',
+                  style: TextStyle(
                       fontSize: 18
-                    ),
+                ),
+              ),
+              ),
+              Divider(),
+              ListTile(
+                title: Text(
+                  'Weight',
+                  style: TextStyle(
+                    color: theme.secondaryHeaderColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                Divider(),
-                ListTile(
-                  title: Text(
-                    'Height',
-                    style: TextStyle(
-                      color: theme.secondaryHeaderColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Text(
-                    '5\' 11\"',
-                    style: TextStyle(
-                        fontSize: 18
-                    ),
+                // example weight in kilograms
+                subtitle: Text(
+                  '80 kg',
+                  style: TextStyle(
+                    fontSize: 18
                   ),
                 ),
-              ],
-            ),
+              ),
+              Divider(),
+              ListTile(
+                title: Text(
+                  'Height',
+                  style: TextStyle(
+                    color: theme.secondaryHeaderColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // example height in feet and inches
+                subtitle: Text(
+                  '5\' 11\"',
+                  style: TextStyle(
+                      fontSize: 18
+                  ),
+                ),
+              ),
+            ],
           )
        ],
       ),

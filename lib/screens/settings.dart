@@ -1,17 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/screens/create.dart';
-import 'package:gyrnal_workout_app/screens/explore.dart';
-import 'package:gyrnal_workout_app/screens/health.dart';
 import '../widgets/drawer_side_menu.dart';
 import '../widgets/app_bar.dart';
 import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
-import 'package:gyrnal_workout_app/screens/dashboard.dart';
-import 'package:gyrnal_workout_app/screens/workouts.dart';
-import 'package:gyrnal_workout_app/screens/profile.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:gyrnal_workout_app/themes/colour_themes/light_colour_theme.dart';
 
 // settings screen ref - https://pub.dev/documentation/settings_ui/latest/
 class SettingsScreen extends StatefulWidget {
@@ -128,22 +121,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
 
-          // Account section
+          // Account settings section
           SettingsSection(
-
             title: Text('Account Settings',
               style: TextStyle(color: Theme.of(context).primaryColor,
               ),
             ),
             tiles: [
 
-              // Phone number section
+              // Phone number tile
               SettingsTile(
                 title: Text(
                   'Phone number',
                   style: TextStyle(color: theme.secondaryHeaderColor),
                 ),
-                // example number
+                // example phone number
                 description: Text('07777 77777'),
                 leading: Icon(
                   Icons.phone,
@@ -152,20 +144,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: (BuildContext context) {},
               ),
 
-              // Email section
+              // Email tile
               SettingsTile(
                 title: Text(
                   'Email',
                   style: TextStyle(color: theme.secondaryHeaderColor),
                 ),
                 // example email
-                description: Text('user-example-email@gmail.com'),
+                description: Text('john-example-email-@email.com'),
                 leading: Icon(
                   Icons.email,
                   color: Theme.of(context).iconTheme.color,
                 ),
                 onPressed: (BuildContext context) {},
               ),
+
+              // sign out tile
               SettingsTile(
                 title: Text(
                   'Sign out',
@@ -188,6 +182,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             tiles: [
+
               // Lock app tile
               SettingsTile.switchTile(
                 title: Text(
@@ -264,6 +259,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ],
           ),
+
+          // Privacy and security section
           SettingsSection(
             title: Text(
               'Privacy and Security',
@@ -271,7 +268,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             tiles: [
-              // Language tile
+
+              // Clear browsing data tile
               SettingsTile(
                 title: Text(
                   'Clear browsing data',
@@ -285,7 +283,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: (BuildContext context) {},
               ),
 
-              // Environment tile
+              // Cookies and other site data tile
               SettingsTile(
                 title: Text(
                   'Cookies and other site data',
@@ -299,7 +297,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: (BuildContext context) {},
               ),
 
-              // Platform tile
+              // Security tile
               SettingsTile(
                 title: Text(
                   'Security',
@@ -313,6 +311,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: (BuildContext context) {},
               ),
 
+              // site settings tile
               SettingsTile(
                 title: Text(
                   'Site settings',
@@ -326,6 +325,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: (BuildContext context) {},
               ),
 
+              // Privacy sandbox tile
               SettingsTile(
                 title: Text(
                   'Privacy Sandbox',
