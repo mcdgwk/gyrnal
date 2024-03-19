@@ -1,16 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/screens/create.dart';
-import 'package:gyrnal_workout_app/screens/profile.dart';
 import '../widgets/drawer_side_menu.dart';
 import '../widgets/app_bar.dart';
-import 'package:gyrnal_workout_app/screens/workouts.dart';
-import 'package:gyrnal_workout_app/screens/dashboard.dart';
-import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
 
-
+// screen to promote health and well-being (objective 4 of the project)
 class HealthScreen extends StatefulWidget {
   const HealthScreen({Key? key}) : super(key: key);
 
@@ -21,15 +16,6 @@ class HealthScreen extends StatefulWidget {
 class _HealthScreenState extends State<HealthScreen> {
   int _selectedScreenIndex = 4;
 
-  final List<Widget> _pageOptions = [
-    //Home(),
-    DashboardScreen(),
-    SettingsScreen(),
-    WorkoutScreen(),
-    CreateScreen(),
-    ProfileScreen(),
-    HealthScreen(),
-  ];
 
   void _selectScreen(int index) {
     setState(() {
@@ -39,7 +25,6 @@ class _HealthScreenState extends State<HealthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: create healthy eating and lifestyle information page
     return Scaffold(
       // side menu drawer
       drawer: DrawerMenu(),
@@ -47,23 +32,71 @@ class _HealthScreenState extends State<HealthScreen> {
       appBar:GyrnalAppBar(
         title: 'Health and Well-being',
       ),
-      body: Center(
-        child: Text(
-          'Health and Well-being Screen',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2.0,
-            color: Colors.grey,
-            fontFamily: 'Montserrat',
-          ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            // balanced diet image
+            Image.asset(
+              'assets/balanced-diet.jpg',
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+
+            // well balanced diet information
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                'A Well-Balanced Diet',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Text(
+              "Maintaining a nutritious, well-balanced diet is essential for feeling your best and having good health. The NHS advices"
+                  " We should all aim complete at least 150 minutes of exercise a week. ",
+              // ref - https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/
+              // benefits ref - https://www.nhs.uk/live-well/exercise/exercise-health-benefits/
+              style: TextStyle(
+                fontSize: 16
+                ),
+              ),
+            ),
+        Padding(padding: EdgeInsets.symmetric(vertical: 8.0),
+          child: Text(
+            "Benefits of exercise ",
+            // ref - https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/
+
+            style: TextStyle(
+                fontSize: 18,
+              fontWeight: FontWeight.bold,
+                 ),
+              ),
+            ),
+
+            // benefits of exercise
+            // benefits ref - https://www.nhs.uk/live-well/exercise/exercise-health-benefits/
+            Text(
+              '1. Reduces the risk of major illnesses like coronary heart disease.\n'
+                  '\n2. Lowers the chance of having a stroke.\n'
+                  '\n3. Decreases the likelihood of developing type 2 diabetes.\n'
+              '\n4. Helps to prevent cancer.\n'
+              '\n5. Can reduce the risk of early death by up to 30%.',
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
         ),
       ),
+
+      // custom nav bar
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedScreenIndex,
         onSelectPage: _selectScreen,
       ),
-
     );
   }
 }
