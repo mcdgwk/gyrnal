@@ -2,50 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:gyrnal_workout_app/models/create_exercise_model.dart';
 import 'package:gyrnal_workout_app/services/exercise_provider.dart';
 import 'package:provider/provider.dart';
+import 'edit_exercise.dart';
 
-import 'edit_recipe_screen.dart';
+// shows recipe information when clicked
+// allows users to navigate to edit their custom exercise
+class ShowExerciseScreen extends StatelessWidget {
+  final CreateExerciseModel createExerciseModel;
 
-// shows on clicked recipe
-class ShowRecipeScreen extends StatelessWidget {
-  final RecipeModel recipeModel;
-
-  const ShowRecipeScreen({super.key, required this.recipeModel});
+  const ShowExerciseScreen({super.key, required this.createExerciseModel});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RecipeClass>(
+    // get theme data
+    final ThemeData theme = Theme.of(context);
+
+    // listens for changes
+    return Consumer<ExerciseClass>(
         builder: ((context, provider, child) => Scaffold(
           appBar: AppBar(
             actions: [
               InkWell(
                   onTap: () {
-                    provider.nameController.text = recipeModel.name;
+                    provider.nameController.text = createExerciseModel.name;
                     provider.weightController.text =
-                        recipeModel.weight.toString();
+                        createExerciseModel.weight.toString();
                     provider.repsController.text =
-                        recipeModel.reps.toString();
+                        createExerciseModel.reps.toString();
                     provider.setsController.text =
-                        recipeModel.sets.toString();
+                        createExerciseModel.sets.toString();
                     provider.restTimeController.text =
-                        recipeModel.restTime.toString();
-                    // provider.ingredientsController.text =
-                    //     recipeModel.ingredients;
-                    // provider.instructionsController.text =
-                    //     recipeModel.instructions;
-                    // provider.image = recipeModel.image;
+                        createExerciseModel.restTime.toString();
+
+                    // pushes to edit exercise screen
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => EditRecipeScreen(
-                                recipeModel: recipeModel))));
+                            builder: ((context) => EditExerciseScreen(
+                                exerciseModel: createExerciseModel))
+                        ),
+                    );
                   },
                   child: const Icon(Icons.edit)),
+              // space between icons
               const SizedBox(
                 width: 20,
               ),
+
+              // deletes exercise if bin icon tapped
               InkWell(
                   onTap: () {
-                    provider.deleteRecipe(recipeModel);
+                    provider.deleteExercise(createExerciseModel);
                     Navigator.pop(context);
                   },
                   child: const Icon(Icons.delete)),
@@ -57,8 +63,9 @@ class ShowRecipeScreen extends StatelessWidget {
                 height: 10,
               ),
               Center(
+                // displays exercise name
                 child: Text(
-                  recipeModel.name,
+                  createExerciseModel.name,
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ),
@@ -66,12 +73,11 @@ class ShowRecipeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              // displays exercise weight
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: !Provider.of<RecipeClass>(context).isDark
-                        ? Colors.blue[100]
-                        : null,
+                    color: theme.primaryColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
@@ -84,7 +90,7 @@ class ShowRecipeScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${recipeModel.weight} kg',
+                      '${createExerciseModel.weight} kg',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -93,12 +99,11 @@ class ShowRecipeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              // displays exercise number of reps container
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: !Provider.of<RecipeClass>(context).isDark
-                        ? Colors.blue[100]
-                        : null,
+                    color: theme.primaryColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
@@ -111,7 +116,7 @@ class ShowRecipeScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${recipeModel.reps}',
+                      '${createExerciseModel.reps}',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -120,39 +125,11 @@ class ShowRecipeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              // number of sets container
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: !Provider.of<RecipeClass>(context).isDark
-                        ? Colors.blue[100]
-                        : null,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  children: [
-                    const Text(
-                      'Reps:',
-                      style: TextStyle(
-                          fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '${recipeModel.reps}',
-                      style: const TextStyle(fontSize: 24),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: !Provider.of<RecipeClass>(context).isDark
-                        ? Colors.blue[100]
-                        : null,
+                    color: theme.primaryColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
@@ -165,7 +142,7 @@ class ShowRecipeScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${recipeModel.sets}',
+                      '${createExerciseModel.sets}',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -174,12 +151,11 @@ class ShowRecipeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              // container containing exercise rest time
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: !Provider.of<RecipeClass>(context).isDark
-                        ? Colors.blue[100]
-                        : null,
+                    color: theme.primaryColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
@@ -192,7 +168,7 @@ class ShowRecipeScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${recipeModel.restTime} seconds',
+                      '${createExerciseModel.restTime} seconds',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -201,61 +177,6 @@ class ShowRecipeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              // Container(
-              //   width: double.infinity,
-              //   padding: const EdgeInsets.all(10),
-              //   decoration: BoxDecoration(
-              //       color: !Provider.of<RecipeClass>(context).isDark
-              //           ? Colors.blue[100]
-              //           : null,
-              //       borderRadius: BorderRadius.circular(10)),
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       const Text(
-              //         'Ingredients',
-              //         style: TextStyle(
-              //             fontSize: 16, fontWeight: FontWeight.bold),
-              //       ),
-              //       const SizedBox(
-              //         height: 20,
-              //       ),
-              //       Text(
-              //         recipeModel.ingredients,
-              //         style: const TextStyle(fontSize: 26),
-              //       )
-              //     ],
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // Container(
-              //   width: double.infinity,
-              //   padding: const EdgeInsets.all(10),
-              //   decoration: BoxDecoration(
-              //       color: !Provider.of<RecipeClass>(context).isDark
-              //           ? Colors.blue[100]
-              //           : null,
-              //       borderRadius: BorderRadius.circular(10)),
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       const Text(
-              //         'Instructions',
-              //         style: TextStyle(
-              //             fontSize: 16, fontWeight: FontWeight.bold),
-              //       ),
-              //       const SizedBox(
-              //         height: 20,
-              //       ),
-              //       Text(
-              //         recipeModel.instructions,
-              //         style: const TextStyle(fontSize: 26),
-              //       )
-              //     ],
-              //   ),
-              // ),
             ]),
           ),
         )));
