@@ -6,46 +6,18 @@ import '../widgets/drawer_side_menu.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/carousel_plans.dart';
 
-
-
-
-// home dashboard (initial) screen
+// home dashboard screen (initial screen on top of home screen)
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-
-    // for testing purposes
-    final List<String> test = [
-      'lib/images/test1.jpg',
-      'lib/images/test2.jpg',
-      'lib/images/test3.jpg',
-      'lib/images/test4.jpg',
-    ];
-
+    // List of pre made workouts to be displayed in the sliding carousels
+    // Push-Pull-Leg Plan (PPL)
     final List<WorkoutPlan> preMadeWorkouts = [
-      WorkoutPlan(
-        planName: 'Pull Workout Plan',
-        imageUrls: [
 
-          'assets/bicep-barbell-curl.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
-          'assets/bicep-curl-dumbbell.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
-          'assets/chest-supported-dumbbell-row.jpg', // ref - https://strengthlevel.com/strength-standards/chest-supported-dumbbell-row/lb
-          'assets/Dumbbell-Shrug.jpeg', // ref - https://www.relifesports.com/what-do-dumbbell-shrugs-work/
-          'assets/new-standing-cable-rear-delt-fly.png', // ref - https://www.gymenix.com/2022/02/rear-deltoid-flyes.html
-
-        ],
-        exerciseNames: [
-          'Barbell Bicep Curl',
-          'Dumbbell Bicep Curl',
-          'Chest Supported Dumbbell Row',
-          'Dumbbell Shrug',
-          'Standing Cable Rear Delt Fly',
-        ],
-      ),
-
+      // Push day
       WorkoutPlan(
         planName: 'Push Workout Plan',
         imageUrls: [
@@ -64,6 +36,27 @@ class DashboardScreen extends StatelessWidget {
         ],
       ),
 
+      // Pull day
+      WorkoutPlan(
+        planName: 'Pull Workout Plan',
+        imageUrls: [
+          'assets/bicep-barbell-curl.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
+          'assets/bicep-curl-dumbbell.png', // ref - https://www.gofitnessplan.com/exercises/barbell-biceps-curl
+          'assets/chest-supported-dumbbell-row.jpg', // ref - https://strengthlevel.com/strength-standards/chest-supported-dumbbell-row/lb
+          'assets/Dumbbell-Shrug.jpeg', // ref - https://www.relifesports.com/what-do-dumbbell-shrugs-work/
+          'assets/new-standing-cable-rear-delt-fly.png', // ref - https://www.gymenix.com/2022/02/rear-deltoid-flyes.html
+
+        ],
+        exerciseNames: [
+          'Barbell Bicep Curl',
+          'Dumbbell Bicep Curl',
+          'Chest Supported Dumbbell Row',
+          'Dumbbell Shrug',
+          'Standing Cable Rear Delt Fly',
+        ],
+      ),
+
+      // Leg day
       WorkoutPlan(
         planName: 'Legs Workout Plan',
         imageUrls: [
@@ -83,7 +76,6 @@ class DashboardScreen extends StatelessWidget {
       ),
     ];
 
-
     return Scaffold(
       // side menu drawer
       drawer: DrawerMenu(),
@@ -92,18 +84,20 @@ class DashboardScreen extends StatelessWidget {
         title: 'Home',
       ),
       body: Container(
+        // allows user to scroll - more content can be shown on screen
         child: SingleChildScrollView(
           child: Column(
             children: [
           Text(
-          'Hello user!',
+          // example username
+          'Hello John!',
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
             letterSpacing: 2.0,
             color: Colors.grey,
             fontFamily: 'Montserrat',
-          ),
+            ),
           ),
               Padding(
                   padding: EdgeInsets.all(20),
@@ -117,16 +111,9 @@ class DashboardScreen extends StatelessWidget {
                     ),
                   ),
               ),
-              // Sliding Carousel to display users plans
-              // Todo - Change to workouts instead of text imgs
-              // on click -> go to workout
-              // current items = test photos
-          
-          
+
+              // Sliding Carousel to display pre-made plans
               // Reference - https://www.youtube.com/watch?v=p3gFikowJVI
-          
-              // test carousel
-              // CarouselWithDots(testImagesList: testImagesList),
               CarouselWithDots(workoutPlan: preMadeWorkouts[0]),
               SizedBox(
                 height: 30,
@@ -135,12 +122,10 @@ class DashboardScreen extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-
-
               CarouselWithDots(workoutPlan: preMadeWorkouts[2]),
               SizedBox(
                 height: 30,
-              ), // CarouselWithDots(testImagesList: testImagesList),
+              ),
             ]
           ),
         ),
