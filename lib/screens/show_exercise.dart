@@ -3,6 +3,8 @@ import 'package:gyrnal_workout_app/models/create_exercise_model.dart';
 import 'package:gyrnal_workout_app/services/exercise_provider.dart';
 import 'package:provider/provider.dart';
 import 'edit_exercise.dart';
+import 'dart:async';
+
 
 // reference YouTube vide
 // https://www.youtube.com/watch?v=dbPrd73CRag
@@ -13,12 +15,109 @@ import 'edit_exercise.dart';
 // referenced used to create a local database that uses CRUD operations ^^
 
 
-// shows recipe information when clicked
+// shows exercise information when clicked
 // allows users to navigate to edit their custom exercise
-class ShowExerciseScreen extends StatelessWidget {
+
+
+// https://letmeflutter.com/how-to-create-our-own-flutter-timer/
+// timer reference ^^
+
+class ShowExerciseScreen extends StatefulWidget {
   final CreateExerciseModel createExerciseModel;
 
+
   const ShowExerciseScreen({super.key, required this.createExerciseModel});
+
+  @override
+  State<ShowExerciseScreen> createState() => _ShowExerciseScreenState();
+}
+
+class _ShowExerciseScreenState extends State<ShowExerciseScreen> {
+
+  Timer? timer;
+
+  // List hoursList = [];
+  List minutesList = [];
+  List secondsList = [];
+
+  // String? hoursVal;
+  String? minutesVal;
+  String? secondsVal;
+
+  // int hours = 0;
+  int minutes = 0;
+  int seconds = 0;
+
+  String displayTime = '00:00:00';
+
+  runTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (seconds > 0) {
+        seconds = seconds - 1;
+      }
+      if (seconds == 0) {
+        if (minutes > 0) {
+          minutes = minutes - 1;
+          seconds = 60;
+        }
+      }
+      // if (minutes == 0) {
+      //   if (hours > 0) {
+      //     hours = hours - 1;
+      //     minutes = 60;
+      //   }
+      // }
+
+      String result =
+          // '${hours < 10 ? '0' : ''}'
+          // '$hours : ${minutes < 10 ? '0' : ''}'
+          '$minutes : ${seconds < 10 ? '0' : ''}$seconds';
+      displayTime = result;
+      setState(() {});
+    });
+  }
+
+  stopTimerr() {
+    timer!.cancel();
+    setState(() {});
+  }
+
+  resetTimerr() {
+    stopTimerr();
+    // hours = 0;
+    minutes = 0;
+    seconds = 0;
+    // hoursVal = '0';
+    minutesVal = '0';
+    secondsVal = '0';
+    displayTime = '00:00:00';
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+
+    // for (int i = 0; i < 25; i++) {
+    //   hoursList.add(i.toString());
+    // }
+
+    for (int i = 0; i < 61; i++) {
+      minutesList.add(i.toString());
+    }
+
+    for (int i = 0; i < 61; i++) {
+      secondsList.add(i.toString());
+    }
+
+    setState(() {});
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    stopTimerr();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +131,23 @@ class ShowExerciseScreen extends StatelessWidget {
             actions: [
               InkWell(
                   onTap: () {
-                    provider.nameController.text = createExerciseModel.name;
+                    provider.nameController.text = widget.createExerciseModel.name;
                     provider.weightController.text =
-                        createExerciseModel.weight.toString();
+                        widget.createExerciseModel.weight.toString();
                     provider.repsController.text =
-                        createExerciseModel.reps.toString();
+                        widget.createExerciseModel.reps.toString();
                     provider.setsController.text =
-                        createExerciseModel.sets.toString();
+                        widget.createExerciseModel.sets.toString();
                     provider.restTimeController.text =
-                        createExerciseModel.restTime.toString();
+                        widget.createExerciseModel.restTime.toString();
 
                     // pushes to edit exercise screen
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => EditExerciseScreen(
-                                exerciseModel: createExerciseModel))
-                        ),
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => EditExerciseScreen(
+                              exerciseModel: widget.createExerciseModel))
+                      ),
                     );
                   },
                   child: const Icon(Icons.edit)),
@@ -60,7 +159,7 @@ class ShowExerciseScreen extends StatelessWidget {
               // deletes exercise if bin icon tapped
               InkWell(
                   onTap: () {
-                    provider.deleteExercise(createExerciseModel);
+                    provider.deleteExercise(widget.createExerciseModel);
                     Navigator.pop(context);
                   },
                   child: const Icon(Icons.delete)),
@@ -74,7 +173,7 @@ class ShowExerciseScreen extends StatelessWidget {
               Center(
                 // displays exercise name
                 child: Text(
-                  createExerciseModel.name,
+                  widget.createExerciseModel.name,
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ),
@@ -99,7 +198,7 @@ class ShowExerciseScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${createExerciseModel.weight} kg',
+                      '${widget.createExerciseModel.weight} kg',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -125,7 +224,7 @@ class ShowExerciseScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${createExerciseModel.reps}',
+                      '${widget.createExerciseModel.reps}',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -151,7 +250,7 @@ class ShowExerciseScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${createExerciseModel.sets}',
+                      '${widget.createExerciseModel.sets}',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -177,7 +276,7 @@ class ShowExerciseScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${createExerciseModel.restTime} seconds',
+                      '${widget.createExerciseModel.restTime} seconds',
                       style: const TextStyle(fontSize: 24),
                     )
                   ],
@@ -186,6 +285,208 @@ class ShowExerciseScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  // Flutter timer
+                  Text(
+                    displayTime,
+                    style: TextStyle(
+                      color: timer == null ? Colors.grey : Colors.blue,
+                      fontSize: 60,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+
+                      Column(
+                        children: [
+                          Text(
+                            'Minutes',
+                            style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Container(
+                            width: 70,
+                            height: 35,
+                            margin: EdgeInsets.only(top: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(color: Colors.grey, width: .5)),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down_sharp,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  isExpanded: true,
+                                  hint: Text(
+                                    'Select',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  value: minutesVal,
+                                  items: [
+                                    for (int i = 0; i < minutesList.length; i++)
+                                      DropdownMenuItem(
+                                          value: minutesList[i],
+                                          child: Text(minutesList[i].toString(),
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.grey.shade600))),
+                                  ],
+                                  onChanged: (val) {
+                                    setState(() {
+                                      minutesVal = val.toString();
+                                      minutes = int.parse(minutesVal!);
+                                    });
+                                  }),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      Column(
+                        children: [
+                          Text(
+                            'Seconds',
+                            style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Container(
+                            width: 70,
+                            height: 35,
+                            margin: EdgeInsets.only(top: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(color: Colors.grey, width: .5)),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down_sharp,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  isExpanded: true,
+                                  hint: Text(
+                                    'Select',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  value: secondsVal,
+                                  items: [
+                                    for (int i = 0; i < secondsList.length; i++)
+                                      DropdownMenuItem(
+                                          value: secondsList[i],
+                                          child: Text(secondsList[i].toString(),
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.grey.shade600))),
+                                  ],
+                                  onChanged: (val) {
+                                    setState(() {
+                                      secondsVal = val.toString();
+                                      seconds = int.parse(secondsVal!);
+                                    });
+                                  }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        MaterialButton(
+                          // onPressed: (hours == 0 && minutes == 0 && seconds == 0)
+                             onPressed: (minutes == 0 && seconds == 0)
+                              ? null
+                              : stopTimerr,
+                          disabledColor: Colors.grey,
+                          disabledTextColor: Colors.white60,
+                          textColor: Colors.white,
+                          color: Colors.red.shade600,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            'Stop',
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+
+                        MaterialButton(
+                          // onPressed: (hours == 0 && minutes == 0 && seconds == 0)
+                          onPressed: (minutes == 0 && seconds == 0)
+                              ? null
+                              : resetTimerr,
+                          disabledColor: Colors.grey,
+                          disabledTextColor: Colors.white60,
+                          color: Colors.green.shade600,
+                          textColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            'Reset',
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: MaterialButton(
+                      // onPressed: (hours == 0 && minutes == 0 && seconds == 0)
+                      onPressed: (minutes == 0 && seconds == 0)
+                          ? null
+                          : () {
+                        if (timer != null) {
+                          stopTimerr();
+                        }
+                        runTimer();
+                      },
+                      color: Colors.blue.shade600,
+                      height: 50,
+                      disabledColor: Colors.grey,
+                      disabledTextColor: Colors.white60,
+                      textColor: Colors.white,
+                      minWidth: double.infinity,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        'Start',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ]),
           ),
         )));
