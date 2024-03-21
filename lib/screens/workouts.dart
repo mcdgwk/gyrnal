@@ -1,17 +1,16 @@
-// pre-made workouts to add to users' collection
 import 'package:flutter/material.dart';
+import 'package:gyrnal_workout_app/screens/search_exercise_screen.dart';
 
 // ignore_for_file: prefer_const_constructors
-import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/screens/create.dart';
-import 'package:gyrnal_workout_app/screens/health.dart';
-import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
-import '../widgets/drawer_side_menu.dart';
-import '../widgets/app_bar.dart';
-import 'package:gyrnal_workout_app/screens/dashboard.dart';
-import 'package:gyrnal_workout_app/screens/settings.dart';
-import 'package:gyrnal_workout_app/screens/profile.dart';
 
+import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
+import 'package:provider/provider.dart';
+import '../services/exercise_provider.dart';
+import '../widgets/drawer_side_menu.dart';
+import '../widgets/exercise_widget.dart';
+
+// displays workouts without the function to create a new one
+// users can use this when they strictly want to workout
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({Key? key}) : super(key: key);
 
@@ -22,15 +21,6 @@ class WorkoutScreen extends StatefulWidget {
 class _WorkoutScreenState extends State<WorkoutScreen> {
   int _selectedScreenIndex = 2;
 
-  final List<Widget> _pageOptions = [
-    //Home(),
-    DashboardScreen(),
-    SettingsScreen(),
-    WorkoutScreen(),
-    CreateScreen(),
-    ProfileScreen(),
-    HealthScreen(),
-  ];
 
   void _selectScreen(int index) {
     setState(() {
@@ -41,38 +31,37 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      // side menu drawer
-      drawer: DrawerMenu(),
-      // custom appBar
-      appBar:GyrnalAppBar(
-        title: 'Workout',
-      ),
-      body: Center(
-        child: Text(
-          'Workout Screen',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2.0,
-            color: Colors.grey,
-            fontFamily: 'Montserrat',
-          ),
+    return Consumer<ExerciseClass>(
+      builder: (BuildContext context, myProvider, Widget? child) => Scaffold(
+        // custom side navigation drawer
+        drawer: DrawerMenu(),
+        // appbar with search function
+        appBar: AppBar(
+          title: const Text('My Workouts'),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((context) => SearchExerciseScreen(
+                          exercises: myProvider.allExercises)))),
+                  child: const Icon(Icons.search)),
+            ),
+          ],
+        ),
+        body: ListView.builder(
+            itemCount: myProvider.allExercises.length,
+            itemBuilder: (context, index) {
+              return ExerciseWidget(myProvider.allExercises[index]);
+            }),
+
+
+        // custom bottom navigation bar
+        bottomNavigationBar: BottomNavBar(
+          selectedIndex: _selectedScreenIndex,
+          onSelectPage: _selectScreen,
         ),
       ),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedScreenIndex,
-        onSelectPage: _selectScreen,
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Define action for FAB
-      //     todo - check if needed - maybe only needed in one screen rather than all
-      //   },
-      //   child: const Icon(Icons.add),
-      //   backgroundColor: Colors.lightGreen.shade600,
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
