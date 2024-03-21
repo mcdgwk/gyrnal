@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gyrnal_workout_app/screens/explore.dart';
 import 'package:gyrnal_workout_app/screens/home.dart';
 import 'package:gyrnal_workout_app/screens/main_create_screen.dart';
-import 'package:gyrnal_workout_app/screens/new_workout.dart';
+import 'package:gyrnal_workout_app/screens/new_exercise.dart';
 import 'package:gyrnal_workout_app/screens/settings.dart';
 import 'package:gyrnal_workout_app/screens/favourite_exercises.dart';
 

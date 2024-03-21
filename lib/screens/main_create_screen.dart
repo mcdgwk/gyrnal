@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:gyrnal_workout_app/screens/new_workout.dart';
+import 'package:gyrnal_workout_app/screens/new_exercise.dart';
 import '../widgets/drawer_side_menu.dart';
 import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';
 import 'package:gyrnal_workout_app/widgets/exercise_widget.dart';
