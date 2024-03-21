@@ -67,7 +67,7 @@ class _FavoriteExercisesScreenState extends State<FavoriteExercisesScreen> {
             ],
           ),
 
-          // builds list of favourite exercises and displays on facourite page
+          // builds list of favourite exercises and displays on favourite page
           body: ListView.builder(
               itemCount: myProvider.favoriteExercises.length,
               itemBuilder: (context, index) {
