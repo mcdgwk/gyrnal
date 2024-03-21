@@ -2,10 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:gyrnal_workout_app/screens/explore.dart';
-import 'package:gyrnal_workout_app/screens/health.dart';
 import 'package:gyrnal_workout_app/screens/main_create_screen.dart';
 import 'package:gyrnal_workout_app/screens/workouts.dart';
-import 'package:gyrnal_workout_app/screens/profile.dart';
 
 // custom bottom navigation bar
 class BottomNavBar extends StatefulWidget {

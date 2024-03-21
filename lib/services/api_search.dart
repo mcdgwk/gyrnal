@@ -10,6 +10,8 @@
 // reference - https://www.api-ninjas.com/api/exercises
 // above is website where the exercise API is hosted
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:gyrnal_workout_app/models/exercise_model.dart';
 import 'package:gyrnal_workout_app/services/api.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +71,6 @@ class SearchExercise extends SearchDelegate {
                   title: Text(data?[index].name ?? ''),
                   // display sthe muscle group that is worked e.g., bicep
                   subtitle: Text(data?[index].muscle ?? ''),
-                  // todo - add more properties
                 );
               });
         });
