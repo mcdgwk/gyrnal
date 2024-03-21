@@ -4,6 +4,16 @@ import 'package:gyrnal_workout_app/models/create_exercise_model.dart';
 import 'package:provider/provider.dart';
 import 'package:gyrnal_workout_app/services/exercise_provider.dart';
 
+
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
+
 // screen to edit custom exercises
 class EditExerciseScreen extends StatefulWidget {
   final CreateExerciseModel exerciseModel;

@@ -9,6 +9,15 @@ import 'package:gyrnal_workout_app/services/exercise_provider.dart';
 import 'package:gyrnal_workout_app/screens/search_exercise_screen.dart';
 import 'package:provider/provider.dart';
 
+
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
 // create screen
 class MainCreate extends StatefulWidget {
   const MainCreate({super.key});

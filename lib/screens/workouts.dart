@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gyrnal_workout_app/screens/search_exercise_screen.dart';
 
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
+
 // ignore_for_file: prefer_const_constructors
 
 import 'package:gyrnal_workout_app/widgets/bottom_navigation_bar.dart';

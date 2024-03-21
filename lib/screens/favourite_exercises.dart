@@ -7,6 +7,14 @@ import 'package:gyrnal_workout_app/widgets/exercise_widget.dart';
 import '../widgets/bottom_navigation_bar.dart';
 import '../widgets/drawer_side_menu.dart';
 
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
 // displays exercises favourited by user
 class FavoriteExercisesScreen extends StatefulWidget {
   const FavoriteExercisesScreen({Key? key}) : super(key: key);

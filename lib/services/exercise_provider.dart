@@ -1,4 +1,10 @@
-import 'dart:io';
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
 
 import 'package:flutter/material.dart';
 import '../services/db_helper.dart';

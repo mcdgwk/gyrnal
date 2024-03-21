@@ -4,6 +4,14 @@ import 'package:gyrnal_workout_app/models/create_exercise_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
 // reference - https://www.youtube.com/watch?v=dbPrd73CRag
 
 // helper class to save exercises to a database using SQfLite

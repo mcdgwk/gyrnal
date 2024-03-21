@@ -4,6 +4,15 @@ import 'package:gyrnal_workout_app/services/exercise_provider.dart';
 import 'package:provider/provider.dart';
 import 'edit_exercise.dart';
 
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
+
 // shows recipe information when clicked
 // allows users to navigate to edit their custom exercise
 class ShowExerciseScreen extends StatelessWidget {

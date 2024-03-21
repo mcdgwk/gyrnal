@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:gyrnal_workout_app/services/exercise_provider.dart';
 
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
+
 // screen to create new exercise
 class NewExerciseScreen extends StatefulWidget {
   const NewExerciseScreen({super.key});

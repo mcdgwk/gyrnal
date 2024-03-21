@@ -4,6 +4,15 @@ import 'package:gyrnal_workout_app/widgets/exercise_widget.dart';
 
 // ignore: must_be_immutable
 
+// reference YouTube vide
+// https://www.youtube.com/watch?v=dbPrd73CRag
+
+// source code reference
+// https://github.com/brhomapps/recipe_book_local_database
+
+// referenced used to create a local database that uses CRUD operations ^^
+
+
 // allows users to search for exercises
 class SearchExerciseScreen extends StatefulWidget {
   // list of all exercises
