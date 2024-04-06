@@ -57,12 +57,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
           // pushes selected screen to device
           switch (index) {
+            // pushes the Workout screen
             case 0:
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WorkoutScreen()));
               break;
+            // pushes the Create screen
             case 1:
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainCreate()));
               break;
+            // pushes the Explore screen
             case 2:
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ExploreScreen()));
               break;

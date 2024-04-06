@@ -146,7 +146,8 @@ class _ShowExerciseScreenState extends State<ShowExerciseScreen> {
                       context,
                       MaterialPageRoute(
                           builder: ((context) => EditExerciseScreen(
-                              exerciseModel: widget.createExerciseModel))
+                              exerciseModel: widget.createExerciseModel)
+                          )
                       ),
                     );
                   },

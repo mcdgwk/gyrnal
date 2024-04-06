@@ -51,7 +51,7 @@ class ExerciseWidget extends StatelessWidget {
               Text('${createExerciseModel.weight} kg'),
               Text('${createExerciseModel.reps} Reps'),
               Text('${createExerciseModel.sets} Sets'),
-              Text('${createExerciseModel.restTime} Rest'),
+              Text('${createExerciseModel.restTime} Seconds Rest'),
             ],
           ),
 

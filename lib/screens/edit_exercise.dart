@@ -109,20 +109,22 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                   onPressed: () {
                     // listens for exercise name changes
                     widget.exerciseModel.name = provider.nameController.text;
+                    // listens for weight changes
                     widget.exerciseModel.weight = int.parse(
                         provider.weightController.text != ''
                             ? provider.weightController.text
                             : '0');
+                    // listens for rep changes
                     widget.exerciseModel.reps = int.parse(
                         provider.repsController.text != ''
                             ? provider.repsController.text
                             : '0');
-
+                    // listens for set changes
                     widget.exerciseModel.sets = int.parse(
                         provider.setsController.text != ''
                             ? provider.setsController.text
                             : '0');
-
+                    // listens for rest time changes
                     widget.exerciseModel.restTime = int.parse(
                         provider.restTimeController.text != ''
                             ? provider.restTimeController.text

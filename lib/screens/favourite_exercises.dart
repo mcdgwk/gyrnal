@@ -69,7 +69,9 @@ class _FavoriteExercisesScreenState extends State<FavoriteExercisesScreen> {
                 child: InkWell(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: ((context) => SearchExerciseScreen(
-                            exercises: myProvider.favoriteExercises)))),
+                            exercises: myProvider.favoriteExercises))
+                      )
+                    ),
                     child: const Icon(Icons.search)),
               ),
             ],

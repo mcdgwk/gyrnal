@@ -36,7 +36,7 @@ class ExerciseModel {
   });
 
   // constructor that initializes an instance from a JSON map.
-  // Assigns each property from the JSON map to the a variable,
+  // Assigns each property from the JSON map to the variable,
   // e.g., Assigns the 'name' property from the JSON map to the 'name' variable and so on.
   ExerciseModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];

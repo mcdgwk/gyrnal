@@ -62,39 +62,8 @@ class InitApp extends StatelessWidget {
         '/explore': (context) => ExploreScreen(),
         '/new_exercise': (context) => NewExerciseScreen(),
         '/favourite_exercises': (context) => FavoriteExercisesScreen(),
-
-
       },
     );
   }
 }
 
-
-//     runApp(MaterialApp(
-//   // removes debug banner
-//   debugShowCheckedModeBanner: false,
-//   title: 'Gyrnal',
-//   theme: lightTheme,
-//   initialRoute: '/home',
-//   routes: {
-//     '/': (context) => Home(), //base route by default - initialRoute Overrides
-//     '/home': (context) => Home(),
-//     '/settings': (context) => SettingsScreen(),
-//     '/workouts': (context) => WorkoutScreen(),
-//     '/profile': (context) => ProfileScreen(),
-//     // '/create': (context) => CreateScreen(),
-//     '/explore': (context) => ExploreScreen(),
-//
-//   },
-// ));
-
-// page indexes
-//
-// 0 - Home
-// 1 - settings
-// 2 - workouts
-// 3 - profile
-// 4 - create
-// 5 - explore
-
-// todo - check for more pages

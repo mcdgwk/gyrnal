@@ -114,11 +114,11 @@ class DashboardScreen extends StatelessWidget {
 
               // Sliding Carousel to display pre-made plans
               // Reference - https://www.youtube.com/watch?v=p3gFikowJVI
-              CarouselWithDots(workoutPlan: preMadeWorkouts[0]),
+              CarouselWithDots(workoutPlan: preMadeWorkouts[1]),
               SizedBox(
                 height: 30,
               ),
-              CarouselWithDots(workoutPlan: preMadeWorkouts[1]),
+              CarouselWithDots(workoutPlan: preMadeWorkouts[0]),
               SizedBox(
                 height: 30,
               ),

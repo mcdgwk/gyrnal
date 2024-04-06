@@ -3,10 +3,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+// carousel plan widgets that display pre-made workouts
 
-
-// workoutPlan clas to hold workout data
-// todo - move?
 class WorkoutPlan{
   final String planName;
   final List<String> imageUrls; // stores list of image locations
@@ -17,7 +15,6 @@ class WorkoutPlan{
 }
 
 // Reference - https://www.youtube.com/watch?v=p3gFikowJVI
-
 class CarouselWithDots extends StatefulWidget {
   final WorkoutPlan workoutPlan;
   // List<String> testImagesList;
@@ -107,7 +104,7 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
         CarouselSlider(
           items: imageSliders,
           options: CarouselOptions(
-            // set to false for now Todo - check if needs changing
+            // users have to manually swipe through images
               autoPlay: false,
               enlargeCenterPage: true,
               aspectRatio: 2.0,

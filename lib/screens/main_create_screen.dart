@@ -53,7 +53,9 @@ class _MainCreateState extends State<MainCreate> {
             child: InkWell(
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: ((context) => SearchExerciseScreen(
-                        exercises: myProvider.allExercises)))),
+                        exercises: myProvider.allExercises))
+                  )
+                ),
                 child: const Icon(Icons.search)),
           ),
         ],
