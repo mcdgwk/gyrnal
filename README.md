@@ -2,6 +2,8 @@
 
 Gyrnal is a workout planner app developed as part of the final dissertation. 
 
+Megan Angela McDougall
+
 
 
 ## References
