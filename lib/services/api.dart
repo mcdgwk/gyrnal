@@ -27,7 +27,8 @@ class FetchExerciseList {
   Future<List<ExerciseModel>> getExerciseList({String? query}) async {
     var url = Uri.parse(urlList);
     try {
-      // performs HTTP get request to api, unique api key is required as the header
+      // performs HTTP get request to api, unique api key is required as the header 
+      // note - the key has been changed for security reasons
       var response = await http.get(url, headers: {'X-Api-Key': 'n8sAtWzLfndazvkgXieKvCNjNfUnl04UzwFNN0Hf'});
 
       // if OK response with a status code of 200
