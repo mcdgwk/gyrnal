@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xFF98EECC),
+  secondaryHeaderColor: Color(0xFF66C2A4),
   scaffoldBackgroundColor: Colors.black,
   appBarTheme: AppBarTheme(
     backgroundColor: Color(0xFF66C2A4),
   ),
+  iconTheme: IconThemeData(
+    color: Color(0xFF66C2A4),
+  ),
+  cardColor: Color(0xFF98EECC),
 );
 
 // todo - text themes and expand to match light

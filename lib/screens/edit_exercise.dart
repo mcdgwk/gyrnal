@@ -33,116 +33,118 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
           title: const Text('Edit Exercise'),
         ),
         // form to edit exercise
-        body: Consumer<ExerciseClass>(
-          builder: (context, provider, child) => Container(
-            padding: const EdgeInsets.all(5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                // allows users to edit exercise name
-                TextField(
-                  controller: provider.nameController,
-                  decoration: InputDecoration(
-                      label: const Text('Exercise Name'),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15))),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-
-                // allows users to edit exercise weight
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: provider.weightController,
-                  decoration: InputDecoration(
-                      label: const Text('Weight (kg)'),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15))),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-
-                // allows users to edit number of reps
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: provider.repsController,
-                  decoration: InputDecoration(
-                      label: const Text('Reps'),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15))),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-
-                // allows users to edit number of sets
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: provider.setsController,
-                  decoration: InputDecoration(
-                      label: const Text('Sets'),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15))),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-
-                // allows users to edit rest time
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: provider.restTimeController,
-                  decoration: InputDecoration(
-                      label: const Text('Rest time (seconds)'),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15))),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-
-                // when "Save Changes" button pressed, update any changed form field
-                ElevatedButton(
-                  onPressed: () {
-                    // listens for exercise name changes
-                    widget.exerciseModel.name = provider.nameController.text;
-                    // listens for weight changes
-                    widget.exerciseModel.weight = int.parse(
-                        provider.weightController.text != ''
-                            ? provider.weightController.text
-                            : '0');
-                    // listens for rep changes
-                    widget.exerciseModel.reps = int.parse(
-                        provider.repsController.text != ''
-                            ? provider.repsController.text
-                            : '0');
-                    // listens for set changes
-                    widget.exerciseModel.sets = int.parse(
-                        provider.setsController.text != ''
-                            ? provider.setsController.text
-                            : '0');
-                    // listens for rest time changes
-                    widget.exerciseModel.restTime = int.parse(
-                        provider.restTimeController.text != ''
-                            ? provider.restTimeController.text
-                            : '0');
-
-                    // clears fields once update made
-                    provider.updateExercise(widget.exerciseModel);
-                    provider.nameController.clear();
-                    provider.weightController.clear();
-                    provider.repsController.clear();
-                    provider.setsController.clear();
-                    provider.restTimeController.clear();
-
-                    Navigator.of(context).pop();
-                  },
-                  child: const Center(child: Text('Save Changes')),
-                )
-              ],
+        body: SingleChildScrollView(
+          child: Consumer<ExerciseClass>(
+            builder: (context, provider, child) => Container(
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  // allows users to edit exercise name
+                  TextField(
+                    controller: provider.nameController,
+                    decoration: InputDecoration(
+                        label: const Text('Exercise Name'),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+          
+                  // allows users to edit exercise weight
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: provider.weightController,
+                    decoration: InputDecoration(
+                        label: const Text('Weight (kg)'),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+          
+                  // allows users to edit number of reps
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: provider.repsController,
+                    decoration: InputDecoration(
+                        label: const Text('Reps'),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+          
+                  // allows users to edit number of sets
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: provider.setsController,
+                    decoration: InputDecoration(
+                        label: const Text('Sets'),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+          
+                  // allows users to edit rest time
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: provider.restTimeController,
+                    decoration: InputDecoration(
+                        label: const Text('Rest time (seconds)'),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+          
+                  // when "Save Changes" button pressed, update any changed form field
+                  ElevatedButton(
+                    onPressed: () {
+                      // listens for exercise name changes
+                      widget.exerciseModel.name = provider.nameController.text;
+                      // listens for weight changes
+                      widget.exerciseModel.weight = int.parse(
+                          provider.weightController.text != ''
+                              ? provider.weightController.text
+                              : '0');
+                      // listens for rep changes
+                      widget.exerciseModel.reps = int.parse(
+                          provider.repsController.text != ''
+                              ? provider.repsController.text
+                              : '0');
+                      // listens for set changes
+                      widget.exerciseModel.sets = int.parse(
+                          provider.setsController.text != ''
+                              ? provider.setsController.text
+                              : '0');
+                      // listens for rest time changes
+                      widget.exerciseModel.restTime = int.parse(
+                          provider.restTimeController.text != ''
+                              ? provider.restTimeController.text
+                              : '0');
+          
+                      // clears fields once update made
+                      provider.updateExercise(widget.exerciseModel);
+                      provider.nameController.clear();
+                      provider.weightController.clear();
+                      provider.repsController.clear();
+                      provider.setsController.clear();
+                      provider.restTimeController.clear();
+          
+                      Navigator.of(context).pop();
+                    },
+                    child: const Center(child: Text('Save Changes')),
+                  )
+                ],
+              ),
             ),
           ),
         ),
